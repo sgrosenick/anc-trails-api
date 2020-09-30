@@ -7,7 +7,11 @@ module.exports = {
     find,
     findById,
     remove,
-    update
+    update,
+    findMessageById,
+    findMessages,
+    addMessage,
+    removeMessage
 };
 
 async function add(lesson) {
@@ -41,3 +45,36 @@ function update(id, changes) {
         });
     
 };
+
+function findMessageById(id) {
+    return db('messages')
+        .where({ id })
+        .first();
+};
+
+async function addMessage(message, lesson_id) {
+    const [ id ] = await db('messages')
+        .where({ lesson_id })
+        .insert(message);
+
+    return findMessageById(id);
+};
+
+function findMessages(lesson_id) {
+    return db("lessons as l")
+        .join("messages as m", "l.id", "m.lesson_id")
+        .select(
+            "l.id as Lesson ID",
+            "l.name as Lesson",
+            "m.id as Message ID",
+            "m.sender as Sender",
+            "m.text as Text"
+        )
+        .where({ lesson_id });
+};
+
+function removeMessage(id) {
+    return db("messages")
+        .where({ id })
+        .del();
+}
