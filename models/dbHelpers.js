@@ -21,7 +21,7 @@ async function add(lesson) {
 
 function getStreets() {
     //return db('anchoragestreets');
-    return db.select('*, ST_AsGeoJSON(geom, 5) AS geoJson').from('anchoragestreets');
+    return db.select('ST_AsGeoJSON(t.*)').from('anchoragestreets').as('t(id, name, geom)');
 }
 
 function find() {
