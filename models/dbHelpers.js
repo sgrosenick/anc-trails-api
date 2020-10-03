@@ -9,7 +9,8 @@ module.exports = {
     findMessageById,
     findMessages,
     addMessage,
-    removeMessage
+    removeMessage,
+    getStreets
 };
 
 async function add(lesson) {
@@ -17,6 +18,10 @@ async function add(lesson) {
 
     return id;
 };
+
+function getStreets() {
+    return db('anchoragestreets');
+}
 
 function find() {
     return db('lessons');

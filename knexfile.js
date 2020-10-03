@@ -3,10 +3,11 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './data/lessons.db3'
-    },
+    client: 'pg',
+    // connection: {
+    //   filename: './data/lessons.db3'
+    // },
+    connection: process.env.DATABASE_URL,
     useNullAsDefault: true,
     pool: {
       afterCreate: (conn, done) => {
