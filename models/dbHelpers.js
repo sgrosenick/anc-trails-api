@@ -20,7 +20,12 @@ async function add(lesson) {
 };
 
 function getStreets() {
-    return db('anchoragestreets');
+    //return db('anchoragestreets');
+
+    const query = 'SELECT ST_AsGeoJSON(t.*) FROM anchoragestreets AS t(objectid, street_nam, street_sym, geom)';
+
+    return db.raw(query);
+
     //return db.select('ST_AsGeoJSON(t.*)').from('anchoragestreets').as('t(id, name, geom)');
 }
 
