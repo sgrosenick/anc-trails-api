@@ -20,7 +20,15 @@ async function add(lesson) {
 };
 
 function getStreets() {
-    return db('streets');
+
+    let streets = db('streets');
+
+    for (const street in streets) {
+        const geometry = street.geojson.parse();
+        street.geojson = geometry;
+    }
+
+    return streets;
 }
 
 function find() {
