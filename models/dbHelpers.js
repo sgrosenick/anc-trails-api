@@ -26,7 +26,7 @@ function getStreets() {
 
     //return db.raw(query);
 
-    return db.select('objectid, street_nam, street_sym, ST_AsGeoJSON(geom, 5)').from('anchoragestreets');
+    return db.select('objectid', 'street_nam', 'street_sym', 'ST_AsGeoJSON(geom, 5)').from('anchoragestreets');
 }
 
 function find() {
