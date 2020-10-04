@@ -22,11 +22,11 @@ async function add(lesson) {
 function getStreets() {
     //return db('anchoragestreets');
 
-    const query = 'SELECT ST_AsGeoJSON(t.*) FROM anchoragestreets AS t(objectid, street_nam, street_sym, geom)';
+    //const query = 'SELECT objectid, street_nam, street_sym, ST_AsGeoJSON(geom, 5) FROM anchoragestreets';
 
-    return db.raw(query);
+    //return db.raw(query);
 
-    //return db.select('ST_AsGeoJSON(t.*)').from('anchoragestreets').as('t(id, name, geom)');
+    return db.select('objectid, street_nam, street_sym, ST_AsGeoJSON(geom, 5)').from('anchoragestreets');
 }
 
 function find() {
