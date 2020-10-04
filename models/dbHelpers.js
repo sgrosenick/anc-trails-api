@@ -21,14 +21,7 @@ async function add(lesson) {
 
 function getStreets() {
 
-    let streets = db('streets');
-
-    for (const street in streets) {
-        const geometry = street.geojson.parse();
-        street.geojson = geometry;
-    }
-
-    return streets;
+    return db('streets');
 }
 
 function find() {
