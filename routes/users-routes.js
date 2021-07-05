@@ -14,10 +14,7 @@ router.post('/register', (req, res) => {
     }
 
     const passwordHash = bcrypt.hashSync(credentials.password, 12);
-    const keyHash = bcrypt.hashSync(credentials.strava_key, 12);
-
     credentials.password = passwordHash;
-    credentials.strava_key = keyHash;
 
     db.addUser(credentials)
     .then(user => {
@@ -38,7 +35,13 @@ router.post('/login', (req, res) => {
     db.findUser(username)
         .then( user => {
             if (user && bcrypt.compareSync(password, user.password)) {
-                res.status(200).json({ message: `Welcome, ${user.username}` });
+
+                let userData = {
+                    username: user.username,
+                    strava_key: user.strava_key
+                }
+
+                res.status(200).json(userData);
             } else {
                 res.status(401).json({ message: "Login failed." });
             }
