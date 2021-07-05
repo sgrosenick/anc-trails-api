@@ -38,7 +38,9 @@ router.post('/login', (req, res) => {
 
                 let userData = {
                     username: user.username,
-                    strava_key: user.strava_key
+                    strava_key: user.strava_key,
+                    strava_id: user.strava_id,
+                    strava_refresh: user.strava_refresh
                 }
 
                 res.status(200).json(userData);

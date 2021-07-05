@@ -5,7 +5,7 @@ module.exports = {
     getTracks,
     insertTracks,
     addUser,
-    findUser
+    findUser,
 };
 
 function getStreets() {
@@ -24,7 +24,7 @@ async function insertTracks(tracks) {
 
 async function addUser(user) {
     return await db('users')
-        .insert(user, ['username', 'password', 'strava_key']);
+        .insert(user, ['username', 'password', 'strava_key', 'strava_id', 'strava_refresh']);
 }
 
 async function findUser(username) {
