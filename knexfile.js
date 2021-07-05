@@ -2,18 +2,26 @@
 
 module.exports = {
 
+  // development: {
+  //   client: 'pg',
+  //   // connection: {
+  //   //   filename: './data/lessons.db3'
+  //   // },
+  //   connection: process.env.DATABASE_URL,
+  //   useNullAsDefault: true,
+  //   pool: {
+  //     afterCreate: (conn, done) => {
+  //       conn.run("PRAGMA foreign_keys = ON", done);
+  //     }
+  //   }
+  // },
+
   development: {
-    client: 'pg',
-    // connection: {
-    //   filename: './data/lessons.db3'
-    // },
-    connection: process.env.DATABASE_URL,
+    client: 'sqlite3',
+    connection: {
+      filename: './data/database.db3'
+    },
     useNullAsDefault: true,
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done);
-      }
-    }
   },
 
   // staging: {
