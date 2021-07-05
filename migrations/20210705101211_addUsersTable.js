@@ -9,7 +9,11 @@ exports.up = function(knex) {
     tbl.text('password', 255)
         .notNullable()
     tbl.text('strava_key')
-        .notNullable() 
+        .notNullable()
+    tbl.text('strava_id')
+        .notNullable()
+    tbl.text('strava_refresh')
+        .notNullable()
   });
 };
 
